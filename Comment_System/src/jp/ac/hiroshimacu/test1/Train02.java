@@ -46,7 +46,7 @@ public class Train02 extends HttpServlet {
 		
 		String forward = null;
 		if(action.equals("password")) {
-			String url = "/tomcat_test/Train01";
+			String url = "/Comment_System/Check_review";
 			response.sendRedirect(url);
 			//forward = JSP_BASE + "login.jsp";
 			
