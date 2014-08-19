@@ -39,7 +39,7 @@ public class Train01 extends HttpServlet {
 	        out.println("</head>");
 	        out.println("<body>");
 	        out.println("<p><a href=\"/sample/Sample1\">メッセージ</a></p>");
-	        out.println("<p><a href=\"/tomcat_test/login.jsp\">社員用</a></p>");
+	        out.println("<p><a href=\"/Comment_System/login.jsp\">社員用</a></p>");
 	        out.println("</body>");
 	        out.println("</html>");
 	        out.close();
