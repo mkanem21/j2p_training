@@ -38,7 +38,7 @@ public class Train01 extends HttpServlet {
 	        out.println("<title>Keiziban</title>");
 	        out.println("</head>");
 	        out.println("<body>");
-	        out.println("<p><a href=\"/Comment_System/Nyuuryoku\">メッセージ</a></p>");
+	        out.println("<p><a href=\"/Comment_System/Nyuuryoku.java\">メッセージ</a></p>");
 	        out.println("<p><a href=\"/Comment_System/login.jsp\">社員用</a></p>");
 	        out.println("</body>");
 	        out.println("</html>");
