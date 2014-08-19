@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +21,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/Kakuninn")
 public class Kakuninn extends HttpServlet {
+	int count;
 	private static final long serialVersionUID = 1L;
-	  
+	  String me;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -28,7 +31,9 @@ public class Kakuninn extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    public void init() throws ServletException{
+    	count=0;
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -38,6 +43,7 @@ public class Kakuninn extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         StringBuffer sb = new StringBuffer();
+        count++;
         sb.append("<html>");
         sb.append("<head>");
         sb.append("<title>確認</title>");
@@ -46,6 +52,7 @@ public class Kakuninn extends HttpServlet {
         sb.append("<form action=\"/Comment_System/Kakuninn\" method=\"post\">");
         sb.append("入力内容を確認してください<br>");
         sb.append(request.getParameter("message"));
+        me=request.getParameter("message");
         sb.append("<br><input type=\"submit\" value=\"投稿\"><br>");
         sb.append("</form>");
         sb.append("</body>");
@@ -68,10 +75,10 @@ public class Kakuninn extends HttpServlet {
         try {
             Class.forName("org.postgresql.Driver").newInstance();
             conn = DriverManager.getConnection(url, user, password);
-
+           
             Statement stmt = conn.createStatement();
-
-            String sql = "insert into comment (id,commenttext,date) values (1,'a','2004-10-19 10:23:54')";
+            String date =getCurrentDateString();
+            String sql = "insert into comment (id,commenttext,date) values ("+count+",'"+me+"','"+date+"')";
             int num = stmt.executeUpdate(sql);
             System.out.println(num);
             sql = "select * from comment";
@@ -99,6 +106,25 @@ public class Kakuninn extends HttpServlet {
         }
 		
 	}
+	public String getCurrentDateString()
 	
+	{
+	
+	    //==== 現在時刻を取得 ====//
+	
+	    Date date = new Date();
+	
+	 
+	
+	    //==== 表示形式を設定 ====//
+	
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	 
+	
+	    return sdf.format(date);
+	
+	}
+
 
 }
